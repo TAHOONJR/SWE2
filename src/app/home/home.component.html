@@ -1,0 +1,121 @@
+<div class="pt-4 discount"> 
+    <h2 data-aos="fade-down-right" data-aos-duration="1000" class="mb-0 mt-5"> <img src="assets/discount.png" alt="discount"> Winter Offers 2023 <a href="https://mcprod.hyperone.com.eg/media/pdf-banners/1698314392732.pdf" target="_blank">  Download PDF here </a> </h2>    
+</div>
+<div>
+    <div class="row g-1">
+        <div class="col-md-6">
+            <div class="position-relative" data-aos="fade-right" data-aos-duration="1000">
+                <img class="w-100" src="assets/1.jpg" alt="img">
+                <button class="btn btn-primary shopBtn"> Shop Now </button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="position-relative" data-aos="fade-left" data-aos-duration="1000">
+                <img class="w-100" src="assets/2.jpg" alt="img">
+                <button class="btn btn-primary shopBtn"> Shop Now </button>
+            </div>
+            <div class="position-relative" data-aos="fade-up" data-aos-duration="1000">
+                <img class="w-100" src="assets/3.jpg" alt="img">
+                <button class="btn btn-primary shopBtn"> Shop Now </button>
+            </div>
+        </div>
+    </div>   
+    <div class="container my-3">
+        <h2 class="text-center text-primary fs-3 fw-bolder my-3" data-aos="fade-down-right" data-aos-duration="1000"> Shop By Category </h2>
+        <div class="row g-3 my-2">
+            <div *ngFor="let item of Categories" class="col-md-3" data-aos="fade-up" data-aos-duration="1000">
+                <a class="text-decoration-none" [routerLink]="['/category',item.category]">
+                    <img class="w-100 rounded-5" [src]="item.src" [alt]="item.category">
+                    <h3 class="text-center text-capitalize fs-5 text-primary"> {{item.category}} </h3>
+                </a>
+            </div>
+        </div>
+    </div>
+        <div class="container">
+        <h2 class="text-center text-primary fs-3 fw-bolder my-3" data-aos="fade-down-right" data-aos-duration="1000"> Top Deals </h2>
+        <input (keyup)="searchProducts(box.value)" #box class="form-control mb-3" type="text" placeholder="Search By Name">
+        <div *ngIf="noItemsForSearch" class="my-5 fs-1 fst-italic text-danger text-center"> 
+            <div class="spinner-grow text-danger" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            not exist
+         </div>
+        <div class="row g-3 my-2">
+            <div *ngFor="let item of productsMClothing;let i = index" class="col-lg-2 col-md-4">
+                <div class="cart" data-aos="fade-up" data-aos-duration="1000">
+                    <a class="text-decoration-none" [routerLink]="['/product',item.id,item.category]">
+                        <div class="img text-center">
+                            <img width="150" height="150" [src]="item.image" [alt]="item.name" [title]="item.name">
+                        </div>
+                        <div class="details">
+                            <h4> {{item.name}} </h4>
+                            <h5> {{item.price|currency:'USD' }} </h5>
+                        </div>
+                    </a>
+                    <!-- <span class="rate"> <i class="fa-solid fa-star"></i> {{item.rating.rate}} </span>    -->
+                    <span *ngIf="isAdmin" class="remove" (click)="remove(i)"> <i class="fa-solid fa-trash-can"></i> </span>   
+                    <span class="add" (click)="addToCart(item)" [ngClass]="{ 'added-to-cart': addedProducts.includes(i) }"> <i class="fa-solid fa-cart-plus"></i> </span> 
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 my-2">
+            <div *ngFor="let item of productsWClothing;let i = index" class="col-lg-2 col-md-4">
+                <div class="cart" data-aos="fade-up" data-aos-duration="1000">
+                    <a class="text-decoration-none" [routerLink]="['/product',item.id,item.category]">
+                        <div class="img text-center">
+                            <img width="150" height="150" [src]="item.image" [alt]="item.name" [title]="item.name">
+                        </div>
+                        <div class="details">
+                            <h4> {{item.name}} </h4>
+                            <h5> {{item.price|currency:'USD' }} </h5>
+                        </div>
+                    </a>
+                    <!-- <span class="rate"> <i class="fa-solid fa-star"></i> {{item.rating.rate}} </span>    -->
+                    <span *ngIf="isAdmin" class="remove" (click)="remove(i)"> <i class="fa-solid fa-trash-can"></i> </span>   
+                    <span class="add" (click)="addToCart(item)" [ngClass]="{ 'added-to-cart': addedProducts.includes(i) }"> <i class="fa-solid fa-cart-plus"></i> </span> 
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 my-2">
+            <div *ngFor="let item of productsJewelery;let i = index" class="col-lg-2 col-md-4">
+                <div class="cart" data-aos="fade-up" data-aos-duration="1000">
+                    <a class="text-decoration-none" [routerLink]="['/product',item.id,item.category]">
+                        <div class="img text-center">
+                            <img width="150" height="150" [src]="item.image" [alt]="item.name" [title]="item.name">
+                        </div>
+                        <div class="details">
+                            <h4> {{item.name}} </h4>
+                            <h5> {{item.price|currency:'USD' }} </h5>
+                        </div>
+                    </a>
+                    <!-- <span class="rate"> <i class="fa-solid fa-star"></i> {{item.rating.rate}} </span>    -->
+                    <span *ngIf="isAdmin" class="remove" (click)="remove(i)"> <i class="fa-solid fa-trash-can"></i> </span>   
+                    <span class="add" (click)="addToCart(item)" [ngClass]="{ 'added-to-cart': addedProducts.includes(i) }"> <i class="fa-solid fa-cart-plus"></i> </span> 
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 my-2 ">
+            <div *ngFor="let item of productsElectronics;let i = index" class="col-lg-2 col-md-4">
+                <div class="cart" data-aos="fade-up" data-aos-duration="1000">
+                    <a class="text-decoration-none" [routerLink]="['/product',item.id,item.category]">
+                        <div class="img text-center">
+                            <img width="150" height="150" [src]="item.image" [alt]="item.name" [title]="item.name">
+                        </div>
+                        <div class="details">
+                            <h4> {{item.name}} </h4>
+                            <h5> {{item.price|currency:'USD' }} </h5>
+                        </div>
+                    </a>
+                    <!-- <span class="rate"> <i class="fa-solid fa-star"></i> {{item.rating.rate}} </span>    -->
+                    <span *ngIf="isAdmin" class="remove" (click)="remove(i)"> <i class="fa-solid fa-trash-can"></i> </span>   
+                    <span class="add" (click)="addToCart(item)" [ngClass]="{ 'added-to-cart': addedProducts.includes(i) }"> <i class="fa-solid fa-cart-plus"></i> </span> 
+                </div>
+            </div>
+        </div>
+        </div>
+</div>
+
+<div *ngIf="!productsMClothing&&!Categories" class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+</div>
+

@@ -1,0 +1,83 @@
+<div class="container mt-5">
+    <div class="row g-5 py-5">
+        <div class="col-lg-3 text-center" data-aos="fade-down-right" data-aos-duration="1000">
+            <img class="w-50" src="assets/user.png" alt="user.png">
+            <h2> {{userInfo.first_name}} </h2>
+            <h4> {{userInfo.email}} </h4>
+        </div>
+        <div class="col-lg-9" data-aos="fade-down-left" data-aos-duration="1000">
+            <h3> Account Information </h3>
+
+            <div [formGroup]="register">
+                <form action="javascript:void(0)" (submit)="save()">
+                    <div class="row g-2">
+                        <div class="col-lg-6">
+                            <label class="form-label" for="first_name"> First Name </label>
+                            <input class="form-control" name="first_name" id="first_name" type="text" formControlName="first_name" >
+                            <div *ngIf="register.get('first_name')?.errors&&register.get('first_name')?.touched" class="alert alert-danger p-1 my-2">
+                                <p *ngIf="register.get('first_name')?.errors?.['required']" class="m-0">First Name is Required</p>
+                                <p *ngIf="register.get('first_name')?.errors?.['minlength']" class="m-0">Min Length is 3 characters</p>
+                                <p *ngIf="register.get('first_name')?.errors?.['maxlength']" class="m-0">Max Length is 50 characters</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-label" for="last_name"> Last Name </label>
+                            <input class="form-control" name="last_name" id="last_name" type="text" formControlName="last_name" >
+                            <div *ngIf="register.get('last_name')?.errors&&register.get('last_name')?.touched" class="alert alert-danger p-1 my-2">
+                                <p *ngIf="register.get('last_name')?.errors?.['required']" class="m-0">Last Name is Required</p>
+                                <p *ngIf="register.get('last_name')?.errors?.['minlength']" class="m-0">Min Length is 3 characters</p>
+                                <p *ngIf="register.get('last_name')?.errors?.['maxlength']" class="m-0">Max Length is 50 characters</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-label" for="email"> Email Address </label>
+                            <input class="form-control" name="email" id="email" type="email" formControlName="email" >
+                            <div *ngIf="register.get('email')?.errors&&register.get('email')?.touched" class="alert alert-danger p-1 my-2">
+                                <p *ngIf="register.get('email')?.errors?.['required']" class="m-0">Email is Required</p>
+                                <p *ngIf="register.get('email')?.errors?.['email']" class="m-0">Email must be unique</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-label" for="phone"> Phone Number </label> <span *ngIf="isAdmin" class="alert alert-danger p-1 ms-2"> Don't change your number </span>
+                            <input class="form-control" name="phone" id="phone" type="number" formControlName="phone">
+                            <div *ngIf="register.get('phone')?.errors&&register.get('phone')?.touched" class="alert alert-danger p-1 my-2">
+                                <p *ngIf="register.get('phone')?.errors?.['required']" class="m-0">Phone is Required</p>
+                                <p *ngIf="register.get('phone')?.errors?.['pattern']" class="m-0">Phone must be unique</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-label" for="password"> Password </label>
+                            <input class="form-control" name="password" id="password" type="text" formControlName="password" >
+                            <div *ngIf="register.get('password')?.errors&&register.get('password')?.touched" class="alert alert-danger p-1 my-2">
+                                <p *ngIf="register.get('password')?.errors?.['required']" class="m-0">password is Required</p>
+                                <div *ngIf="register.get('password')?.errors?.['pattern']" class="m-0">
+                                    <ul>
+                                        <li> At least one uppercase letter (A-Z). </li>
+                                        <li> At least one lowercase letter (a-z). </li>
+                                        <li> At least one digit (0-9). </li>
+                                        <li> At least one special character from the set [#$%^&*!]. </li>
+                                        <li> Minimum length of 8 characters. </li>
+                                    </ul>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button [disabled]="register.invalid" class="btn btn-primary my-3" type="submit"> <span *ngIf="!showSavedMessage"> Save </span> <span *ngIf="showSavedMessage"> <i class="fa-solid fa-circle-check"></i> </span> </button> <span *ngIf="showError" class="alert alert-danger p-1 m-2"> {{errorMessage}} </span>
+                </form>
+            </div>
+
+            <div *ngIf="isAdmin" class="users text-center">
+                
+                <div class="d-flex justify-content-around">
+                    <button class="btn btn-success mb-3"> <a class="text-white text-decoration-none" routerLink="showUsers"> Show All Users </a> </button>
+                    <button class="btn btn-primary mb-3"> <a class="text-white text-decoration-none" routerLink="addUsers"> Add New Users </a> </button>
+                    <button class="btn btn-primary mb-3"> <a class="text-white text-decoration-none" routerLink="editProducts"> Edit Products </a> </button>
+                </div>
+
+                  <router-outlet></router-outlet>
+
+            </div>
+
+        </div>
+    </div>
+</div>

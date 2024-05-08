@@ -1,0 +1,95 @@
+  <nav class="navbar navbar-expand-lg fixed-top bg-light">
+    <div class="container">
+      <a routerLink="cart">
+        <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="badge"> {{numberOfOrders}} </span>
+        </div>
+      </a>
+      <a class="navbar-brand logo text-center" routerLink="home" routerLinkActive="router-link-active"  style="font-family: 'Nosifer', sans-serif;"> <img class="w-25 rounded-3" src="assets/logo.jpg" alt="logo"> a to z </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-start py-1 bg-light" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title logo pointer" id="offcanvasNavbarLabel" routerLink="home" style="font-family: 'Nosifer', sans-serif;"> a to z store </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"> </button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-center flex-grow-1 pe-3 text-center">
+ 
+          <li class="nav-item" data-bs-dismiss="offcanvas" aria-label="Close">
+            <a class="nav-link" routerLink="home" routerLinkActive="active"> Home  </a>
+          </li>
+
+          <li class="nav-item" data-bs-dismiss="offcanvas" aria-label="Close">
+            <a class="nav-link" routerLink="/category/mClothing" routerLinkActive="active" > men's clothing </a>
+          </li>
+
+          <li class="nav-item" data-bs-dismiss="offcanvas" aria-label="Close">
+            <a class="nav-link" routerLink="/category/wClothing" routerLinkActive="active" > women's clothing </a>
+          </li>
+
+          <li class="nav-item" data-bs-dismiss="offcanvas" aria-label="Close">
+            <a class="nav-link" routerLink="/category/jewelery" routerLinkActive="active" > jewelry </a>
+          </li>
+
+          <li class="nav-item" data-bs-dismiss="offcanvas" aria-label="Close">
+            <a class="nav-link" routerLink="/category/electronics" routerLinkActive="active" > electronics </a>
+          </li>
+
+          <!-- <li class="nav-item nav-link time_color m-auto">
+            <b> {{time | date:'MMM d, y, h:mm:ss a'}} </b>
+          </li> -->
+
+          </ul>
+
+          <ul class="navbar-nav justify-content-center pe-3">
+
+            <li *ngIf="!isLogin" class="nav-item" data-bs-dismiss="offcanvas" aria-label="Close">
+              <a class="nav-link" routerLink="login" routerLinkActive="active" > Log in </a>
+            </li>
+
+            <li *ngIf="!isLogin" class="nav-item" data-bs-dismiss="offcanvas" aria-label="Close">
+              <a class="nav-link" routerLink="register" routerLinkActive="active" > Register </a>
+            </li>
+
+            <li *ngIf="isLogin" class="nav-item" data-bs-dismiss="offcanvas" aria-label="Close">
+              <a class="nav-link" [routerLink]="'/u/' + user.phone" routerLinkActive="active" > {{user.first_name}} <i class="fa-solid fa-user-pen"></i> </a>
+            </li>
+
+            <li *ngIf="isLogin" class="nav-item" data-bs-dismiss="offcanvas" aria-label="Close">
+              <a class="nav-link pointer" routerLinkActive="active" data-bs-toggle="modal" data-bs-target="#staticBackdrop" > Log out <i class="fa-solid fa-power-off"></i> </a>
+            </li>
+            
+            <li class="text-center m-auto mt-4 d-lg-none fs-5">
+                <div style="font-family: 'Amiri', serif;">
+                   Created By <span class="animation"> Mohamed Essam </span> 
+                    <div class="my-2">
+                       <a class="me-3" href="https://www.facebook.com/profile.php?id=100071129482184&mibextid=ZbWKwL" target="_blank"> <i class="fa-brands fa-facebook"></i> </a>
+                       <a href="http://wa.me/+201124599015" target="_blank"> <i class="fa-brands fa-whatsapp"></i> </a>
+                    </div>
+                </div>
+                <div style="font-family: 'Aref Ruqaa', serif;" class="text-primary"> ❤️ اللهم صلي علي سيدنا محمد ❤️ </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </nav> 
+
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <i class="fa-solid fa-bell"></i> Are you sure you want to <b class="text-danger"> Log Out </b> ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> No </button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="logOut()"> Yes </button>
+        </div>
+      </div>
+    </div>
+  </div>

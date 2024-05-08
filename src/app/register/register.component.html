@@ -1,0 +1,78 @@
+<div class="container my-5">
+    <div class="row g-3 pt-5">
+        <div class="col-lg-6" data-aos="fade-down-right" data-aos-duration="1000">
+            <h1 class="text-primary fs-4"> Welcome To <span style="font-family: 'Nosifer', sans-serif;"> a to z store </span> </h1>
+            <div [formGroup]="register">
+                <form action="javascript:void(0)" (submit)="registerForm()">
+                    <div class="row g-2">
+                        <div class="col-lg-6">
+                            <label class="form-label" for="first_name"> First Name </label>
+                            <input class="form-control" name="first_name" id="first_name" type="text" formControlName="first_name"
+                            [ngClass]="{'is-invalid': register.get('first_name')?.errors && register.get('first_name')?.touched}"
+                            [ngClass]="{'is-valid': register.get('first_name')?.valid && register.get('first_name')?.touched}">
+                            <div *ngIf="register.get('first_name')?.errors&&register.get('first_name')?.touched" class="alert alert-danger p-1 my-2">
+                                <p *ngIf="register.get('first_name')?.errors?.['required']" class="m-0">First Name is Required</p>
+                                <p *ngIf="register.get('first_name')?.errors?.['minlength']" class="m-0">Min Length is 3 characters</p>
+                                <p *ngIf="register.get('first_name')?.errors?.['maxlength']" class="m-0">Max Length is 50 characters</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-label" for="last_name"> Last Name </label>
+                            <input class="form-control" name="last_name" id="last_name" type="text" formControlName="last_name"
+                            [ngClass]="{'is-invalid': register.get('last_name')?.errors && register.get('last_name')?.touched}"
+                            [ngClass]="{'is-valid': register.get('last_name')?.valid && register.get('last_name')?.touched}">
+                            <div *ngIf="register.get('last_name')?.errors&&register.get('last_name')?.touched" class="alert alert-danger p-1 my-2">
+                                <p *ngIf="register.get('last_name')?.errors?.['required']" class="m-0">Last Name is Required</p>
+                                <p *ngIf="register.get('last_name')?.errors?.['minlength']" class="m-0">Min Length is 3 characters</p>
+                                <p *ngIf="register.get('last_name')?.errors?.['maxlength']" class="m-0">Max Length is 50 characters</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-label" for="email"> Email Address </label>
+                            <input class="form-control" name="email" id="email" type="email" formControlName="email"
+                            [ngClass]="{'is-invalid': register.get('email')?.errors && register.get('email')?.touched}"
+                            [ngClass]="{'is-valid': register.get('email')?.valid && register.get('email')?.touched}">
+                            <div *ngIf="register.get('email')?.errors&&register.get('email')?.touched" class="alert alert-danger p-1 my-2">
+                                <p *ngIf="register.get('email')?.errors?.['required']" class="m-0">Email is Required</p>
+                                <p *ngIf="register.get('email')?.errors?.['email']" class="m-0">Email must be unique</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-label" for="phone"> Phone Number </label>
+                            <input class="form-control" name="phone" id="phone" type="number" formControlName="phone"
+                            [ngClass]="{'is-invalid': register.get('phone')?.errors && register.get('phone')?.touched}"
+                            [ngClass]="{'is-valid': register.get('phone')?.valid && register.get('phone')?.touched}">
+                            <div *ngIf="register.get('phone')?.errors&&register.get('phone')?.touched" class="alert alert-danger p-1 my-2">
+                                <p *ngIf="register.get('phone')?.errors?.['required']" class="m-0">Phone is Required</p>
+                                <p *ngIf="register.get('phone')?.errors?.['pattern']" class="m-0">Phone must be unique</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-label" for="password"> Password </label>
+                            <input class="form-control" name="password" id="password" type="password" formControlName="password"
+                            [ngClass]="{'is-invalid': register.get('password')?.errors && register.get('password')?.touched}"
+                            [ngClass]="{'is-valid': register.get('password')?.valid && register.get('password')?.touched}">
+                            <div *ngIf="register.get('password')?.errors&&register.get('password')?.touched" class="alert alert-danger p-1 my-2">
+                                <p *ngIf="register.get('password')?.errors?.['required']" class="m-0">password is Required</p>
+                                <div *ngIf="register.get('password')?.errors?.['pattern']" class="m-0">
+                                    <ul>
+                                        <li> At least one uppercase letter (A-Z). </li>
+                                        <li> At least one lowercase letter (a-z). </li>
+                                        <li> At least one digit (0-9). </li>
+                                        <li> At least one special character from the set [#$%^&*!]. </li>
+                                        <li> Minimum length of 8 characters. </li>
+                                    </ul>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button [disabled]="register.invalid" class="btn btn-primary my-3" type="submit"> Register </button> <span *ngIf="showError" class="alert alert-danger p-1 m-2"> {{errorMessage}} </span>
+                </form>
+            </div>
+            <p> Already have an account? <a routerLink="/login">Sign in</a> </p>
+        </div>
+        <div class="col-lg-6" data-aos="fade-down-left" data-aos-duration="1000">
+            <img class="w-100 rounded-3" src="assets/registerJpg.jpg" alt="registerJpg">
+        </div>
+    </div>
+</div>

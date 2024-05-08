@@ -1,0 +1,10 @@
+.remove {
+    font-size: .75rem;
+    text-transform: capitalize;
+}
+
+@media print {
+    .noItems , .isItems , .btn {
+        display: none;
+    }
+}

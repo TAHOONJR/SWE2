@@ -1,0 +1,25 @@
+<div class="container py-5">
+        <h2 data-aos="fade-down-right" data-aos-duration="1000" class="my-4 text-center text-capitalize text-primary"> {{category}} Deals </h2>
+        <div class="row g-3">
+            <div *ngFor="let item of products;let i = index" class="col-lg-3 col-md-4">
+                <div class="cart" data-aos="fade-up" data-aos-duration="1000">
+                    <a class="text-decoration-none" [routerLink]="['/product',item.id]">
+                        <div class="img text-center">
+                            <img width="150" height="150" [src]="item.image" [alt]="item.title" [title]="item.title">
+                        </div>
+                        <div class="details">
+                            <h4> {{item.title|slice:0:25}}... </h4>
+                            <h5> {{item.price|currency:'USD' }} </h5> 
+                        </div>
+                    </a>
+                    <span class="rate"> <i class="fa-solid fa-star"></i> {{item.rating.rate}} </span>   
+                    <span class="add" (click)="addToCart(item)" [ngClass]="{ 'added-to-cart': addedProducts.includes(i) }"> <i class="fa-solid fa-cart-plus"></i> </span> 
+                </div>
+            </div>
+        </div>
+ </div>
+
+
+ <div *ngIf="!products" class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+</div>

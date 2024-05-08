@@ -1,0 +1,74 @@
+$first-color: rgb(244, 199, 174);
+$second-color: rgb(29, 76, 161);
+
+.nav-link {
+    color: $first-color;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 7px;
+    margin: 2px 10px;
+    background-color: $second-color;
+    border-radius: 5px;
+    text-transform: capitalize;
+}
+
+.scale {
+    color: $second-color;
+}
+
+.logo {
+    color: $second-color;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.active {
+    color: $second-color !important;
+    background-color: $first-color;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.navbar .navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar .navbar-toggler[aria-expanded="true"] {
+    border-color: $first-color !important;
+}
+
+.cart-icon {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .cart-icon i {
+    font-size: 35px;
+    color: $second-color;
+  }
+  
+  .cart-icon .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: $first-color; /* Badge background color */
+    color: $second-color; /* Text color */
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 50%;
+  }
+
+@keyframes logoAnimation {
+    0%   {color:$first-color}
+    20%   {color:$second-color}
+    40%  {color:$first-color}
+    60%   {color:$second-color}
+    80% {color:$first-color}
+    100% {color:$second-color}
+} 
+
+.animation {
+    animation: logoAnimation 4s ease-in-out infinite alternate;
+}  

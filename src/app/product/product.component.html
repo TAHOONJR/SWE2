@@ -1,0 +1,20 @@
+<div *ngIf="productData" class="container py-5">
+    <div class="row g-5 my-4">
+        <div class="col-lg-4">
+                <img class="w-100 bg-white border border-1 border-dark-subtle rounded-5 p-3" [src]="productData.image" [alt]="productData.name">
+        </div>
+        <div class="col-lg-8">
+            <h3 class="text-dark-emphasis fs-3 fw-normal"> {{productData.name}} </h3>
+            <h4 class="text-primary fs-3 fw-bold"> {{productData.price | currency }} </h4>
+            <h6 class="text-dark-emphasis fs-4"> Product Description : </h6>
+            <p class="text-muted"> {{productData.description}} </p>
+            <h6 class="my-4"> Category :  <a [routerLink]="['/category',productData.category]"> {{productData.category}} </a> </h6>
+            <button [disabled]="added" (click)="addToCart()" class="btn btn-primary fw-bold" style="font-family: 'Ubuntu', sans-serif;"> <span *ngIf="!added"> <i class="fa-solid fa-cart-plus"></i> Add to card </span> <span *ngIf="added"> added <i class="fa-regular fa-circle-check"></i> </span> </button>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="!productData" class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+</div>

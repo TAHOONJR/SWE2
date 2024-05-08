@@ -1,0 +1,28 @@
+
+<table class="table text-center table-primary table-striped table-hover rounded-table">
+    <thead>
+      <tr>
+        <th scope="col"> First Name </th>
+        <th scope="col"> Last Name </th>
+        <th scope="col"> Email </th>
+        <th scope="col"> Phone </th>
+        <th scope="col"> password </th>
+        <!-- <th class="text-warning" scope="col"> Update </th> -->
+        <th class="text-danger" scope="col"> Delete </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of users ; let i=index"> 
+
+            <th> <input class="form-control" type="text" [value]="item.first_name" > </th>
+            <th> <input class="form-control" type="text" [value]="item.last_name" > </th>
+            <th> <input class="form-control" type="text" [value]="item.email"> </th> 
+            <th> <input class="form-control" type="text" [value]="item.phone"> </th>
+            <th> <input class="form-control" type="text" [value]="item.password" > </th>
+            <!-- <th> <button class="btn btn-warning" type="submit"> Update </button> </th> -->
+            <th> <button class="btn btn-danger" (click)="deleteUser(i)"> Delete </button> </th>
+      
+      </tr>
+    </tbody>
+  </table>
+  <h3 class="text-center alert alert-danger" *ngIf="users.length === 0"> There are no users </h3>

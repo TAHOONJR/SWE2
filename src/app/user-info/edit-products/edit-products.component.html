@@ -1,0 +1,56 @@
+<form [formGroup]="productForm" (ngSubmit)="addProduct()">
+  <div class="row g-2">
+    <div class="col-lg-6">
+      <label class="form-label" for="productId">Product ID</label>
+      <input type="text" class="form-control" id="productId" formControlName="productId">
+    </div>
+    <div class="col-lg-6">
+      <label class="form-label" for="productName">Product Name</label>
+      <input type="text" class="form-control" id="productName" formControlName="productName">
+    </div>
+    <div class="col-lg-6">
+      <label class="form-label" for="productPrice">Price</label>
+      <input type="number" class="form-control" id="productPrice" formControlName="productPrice">
+    </div>
+    <div class="col-lg-6">
+      <label class="form-label" for="productImage">Image URL</label>
+      <input type="text" class="form-control" id="productImage" formControlName="productImage">
+    </div>
+    <div class="col-lg-6">
+      <label class="form-label" for="productCategory">Product Category</label>
+      <input type="text" class="form-control" id="productCategory" formControlName="productCategory">
+    </div>
+    <div class="col-lg-12">
+      <label class="form-label" for="productDescription">Description</label>
+      <textarea class="form-control" id="productDescription" formControlName="productDescription"></textarea>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary my-2" [disabled]="productForm.invalid">Add Product</button>
+</form>
+
+
+<h2 class="text-primary fst-italic"> Products List </h2>
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="text-primary">ID</th>
+        <th class="text-primary">Name</th>
+        <th class="text-primary">Price</th>
+        <th class="text-primary">Description</th>
+        <th class="text-primary">Category</th>
+        <th class="text-primary">Image</th>
+        <th class="text-danger">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.description | slice:0:50 }} ... </td>
+        <td>{{ product.category }}</td>
+        <td><img [src]="product.image" [title]="product.title" alt="{{ product.title }}" class="img-thumbnail"></td>
+        <td> <button class="btn btn-danger" (click)="deleteProduct()"> Delete </button> </td>
+      </tr>
+    </tbody>
+  </table>

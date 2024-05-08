@@ -1,0 +1,38 @@
+<div class="container my-5">
+    <div class="row g-3 pt-5">
+        <div class="col-lg-6" data-aos="fade-down-right" data-aos-duration="1000">
+            <h1 class="text-primary fs-4"> Welcome Back ! </h1>
+            <p>Sign in to your Account</p>
+            <div [formGroup]="login">
+                <form action="javascript:void(0)" (submit)="loginForm()">
+                    <div class="row g-2">
+                        <div class="col-lg-6">
+                            <label class="form-label" for="phone"> Phone Number </label>
+                            <input class="form-control" name="phone" id="phone" type="number" formControlName="phone"
+                            [ngClass]="{'is-invalid': login.get('phone')?.errors && login.get('phone')?.touched}"
+                            [ngClass]="{'is-valid': login.get('phone')?.valid && login.get('phone')?.touched}">
+                            <div *ngIf="login.get('phone')?.errors&&login.get('phone')?.touched" class="alert alert-danger p-1 my-2">
+                                <p *ngIf="login.get('phone')?.errors?.['required']" class="m-0">Phone is Required</p>
+                                <p *ngIf="login.get('phone')?.errors?.['pattern']" class="m-0">Phone must be unique</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-label" for="password"> Password </label>
+                            <input class="form-control" name="password" id="password" type="password" formControlName="password"
+                            [ngClass]="{'is-invalid': login.get('password')?.errors && login.get('password')?.touched}"
+                            [ngClass]="{'is-valid': login.get('password')?.valid && login.get('password')?.touched}">
+                            <div *ngIf="login.get('password')?.errors&&login.get('password')?.touched" class="alert alert-danger p-1 my-2">
+                                <p *ngIf="login.get('password')?.errors?.['required']" class="m-0">password is Required</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button [disabled]="login.invalid" class="btn btn-primary my-3" type="submit"> Log in </button> <span *ngIf="showError" class="alert alert-danger p-1 m-2"> {{errorMessage}} </span>
+                </form>
+            </div>
+            <p> Don’t have an Account? <a routerLink="/register"> Register Now </a> </p>
+        </div>
+        <div class="col-lg-6" data-aos="fade-down-left" data-aos-duration="1000">
+            <img class="w-100 rounded-3" src="assets/loginJpg.jpg" alt="loginJpg">
+        </div>
+    </div>
+</div>
